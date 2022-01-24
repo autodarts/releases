@@ -1,5 +1,10 @@
 # Changelog
 
+## 2022-01-24
+
+### Board Client `0.16.1`
+* We fixed a bug with the undistortion where different resolutions to the `distortion.json` resolution caused problems.
+
 ## 2022-01-17
 
 ### Board Manager `0.16.0`
@@ -16,8 +21,3 @@
 * The Board Client now sends some user statistics to the Board Server such as Client Version, OS Version information, Config, Calibration, and Distortion parameters.
 * Config, Calibration, and Distortion settings are now loaded directly at startup and are not depending on the Cam initialization any longer.
 * Config: We updated the default settings to more reasonable defaults. Settings now scale with the `height` as apposed to the product of `height` and `width` (total number of pixels).
-
-### Downloads
-* `autodarts0.16.0.linux-amd64.opencv4.2.0.zip` - Linux - 64bit - Intel Processor - OpenCV 4.2.0 - Use this for Ubuntu etc.
-* `autodarts0.16.0.linux-arm64.opencv4.1.1.zip` - Linux - 64bit - ARM Processor - OpenCV 4.1.1 - Use this for Jetson Nano
-* `autodarts0.16.0.linux-armv7l.opencv4.5.5.zip` - Linux - 32bit - ARM Processor - OpenCV 4.5.5 - Use this for Raspberry Pi
