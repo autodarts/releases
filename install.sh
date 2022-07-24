@@ -43,6 +43,7 @@ else
 fi
 
 # Download autodarts binary and unpack to ~/.local/bin
+mkdir -p ~/.local/bin
 curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xvz -C ~/.local/bin
 
 # Make executable
