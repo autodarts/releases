@@ -44,11 +44,14 @@ fi
 
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
+echo "Downloading and extracting ${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz."
 curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xvz -C ~/.local/bin
 chmod +x ~/.local/bin/autodarts
 
 # Creat systemd service
-cat <<EOF | sudo tee /etc/systemd/system/autodarts.service
+echo "Creating systemd service for autodarts to start on system startup."
+echo "We will need sudo access to do that."
+cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodarts.service
 
 [Unit]
@@ -67,5 +70,10 @@ RestartSec=5s
 WantedBy=multi-user.target
 EOF
 
+echo "Enabling systemd service."
 sudo systemctl enable autodarts
+
+echo "Starting autodarts."
 sudo systemctl start autodarts
+
+echo "Finished."
