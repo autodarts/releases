@@ -45,12 +45,10 @@ fi
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
 curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xvz -C ~/.local/bin
-
-# Make executable
 chmod +x ~/.local/bin/autodarts
 
 # Creat systemd service
-sudo cat <<EOF > /etc/systemd/system/autodarts.service
+cat <<EOF | sudo tee /etc/systemd/system/autodarts.service
 # autodarts.service
 
 [Unit]
