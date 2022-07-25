@@ -20,3 +20,20 @@ This also works with the `-n` flag from before.
 ```bash
 bash <(curl -sL get.autodarts.io) 0.16.0
 ```
+
+You can control the the `autodarts.service` with the `systemctl` command.
+
+```bash
+sudo systemctl start autodarts
+sudo systemctl stop autodarts
+sudo systemctl restart autodarts
+sudo systemctl status autodarts
+sudo systemctl disable autodarts
+sudo systemctl enable autodarts
+```
+
+If you want to see the log output, you can use the following command.
+
+```bash
+journalctl -u autodarts -f
+```
