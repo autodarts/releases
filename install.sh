@@ -53,7 +53,7 @@ fi
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
 echo "Downloading and extracting autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz into ~/.local/bin"
-curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
+curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
 echo "Making ~/.local/bin/autodarts executable"
 chmod +x ~/.local/bin/autodarts
 
