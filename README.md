@@ -1,4 +1,4 @@
-# Autodarts.io
+# Autodarts Board Client
 
 You can install autodarts on a Linux system by using this single command.
 It will automatically download the latest version and install a systemd service to automatically start autodarts on startup.
@@ -7,16 +7,16 @@ It will automatically download the latest version and install a systemd service 
 bash <(curl -sL get.autodarts.io)
 ```
 
-Example output:
+If you do not want the autostart systemd service to be installed, you can use the `-n` flag as follows.
 
+```bash
+bash <(curl -sL get.autodarts.io) -n
 ```
-> bash <(curl -sL get.autodarts.io)
-Downloading latest version v0.16.1.
-Downloading and extracting 0.16.1/autodarts0.16.1.linux-arm64.tar.gz.
-autodarts
-Creating systemd service for autodarts to start on system startup.
-We will need sudo access to do that.
-Enabling systemd service.
-Starting autodarts.
-Finished.
+
+If you want to install a specific version, say, `0.16.0`, then you can append the required version to the command as follows.
+This can be helpful if you want to downgrade to an earlier version.
+This also works with the `-n` flag from before.
+
+```bash
+bash <(curl -sL get.autodarts.io) 0.16.0
 ```

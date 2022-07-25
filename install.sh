@@ -1,10 +1,18 @@
-#/bin/bash
+#!/bin/bash
+
+AUTOSTART="true"
+while getopts n OPTION; do
+  case "${OPTION}" in
+    n) AUTOSTART="false";;
+  esac
+done
+shift "$(($OPTIND -1))"
 
 REQ_VERSION=$1
 if [ "$REQ_VERSION" = "" ]
 then
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases/latest | grep tag_name | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
-    echo "Downloading latest version v${VERSION}."
+    echo "Installing latest version v${VERSION}."
 else
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases | grep tag_name | grep ${REQ_VERSION} | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
     if [ "$VERSION" = "" ]
@@ -13,7 +21,7 @@ else
         echo "Exiting."
         exit 1
     fi
-    echo "Downloading requested version v${VERSION}"
+    echo "Installing requested version v${VERSION}"
 fi
 
 PLATFORM=$(uname)
@@ -44,13 +52,15 @@ fi
 
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
-echo "Downloading and extracting ${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz."
-curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xvz -C ~/.local/bin
+echo "Downloading and extracting autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz into ~/.local/bin"
+curl -sL https://github.com/autodarts/releases/releases/download/${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
+echo "Making ~/.local/bin/autodarts executable"
 chmod +x ~/.local/bin/autodarts
 
+if [ ${AUTOSTART} = "true" ]; then
 # Creat systemd service
-echo "Creating systemd service for autodarts to start on system startup."
-echo "We will need sudo access to do that."
+echo "Creating systemd service for autodarts to start on system startup"
+echo "We will need sudo access to do that"
 cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodarts.service
 
@@ -76,5 +86,6 @@ sudo systemctl enable autodarts
 echo "Starting autodarts."
 sudo systemctl stop autodarts
 sudo systemctl start autodarts
+fi
 
 echo "Finished."
