@@ -87,5 +87,3 @@ echo "Starting autodarts."
 sudo systemctl stop autodarts
 sudo systemctl start autodarts
 fi
-
-echo "Finished."
