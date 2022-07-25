@@ -8,7 +8,7 @@
 - We removed the synchronization mechanism that aligned FPS in the main loop with the lowest FPS coming from the cams. Overall this should give more stable performance.
 - We fixed a bug where cameras were not correctly freed when one of the cams had failed, resulting in segmentation fault crashes.
 - We added two flags to the `autodarts` binary:
-  - If you run `autodarts --version`, it will return the Board Client version/
+  - If you run `autodarts --version`, it will return the Board Client version.
   - If you run `autodarts --opencv-info`, it will return build information on the included OpenCV build.
 - We optimized the included OpenCV version to use a pre-compiled version of the `libjpeg-turbo` library with optimizers for different kernel architectures.
 - We reduced the footprint of the included OpenCV version to only bundle the necessary libraries, which overall reduced the size of the binaries.
