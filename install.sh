@@ -37,15 +37,15 @@ esac
 
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
-echo "Downloading and extracting autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz into ~/.local/bin"
+echo "Downloading and extracting 'autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz' into '~/.local/bin'."
 curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
-echo "Making ~/.local/bin/autodarts executable"
+echo "Making ~/.local/bin/autodarts executable."
 chmod +x ~/.local/bin/autodarts
 
 if [ ${AUTOSTART} = "true" ]; then
 # Creat systemd service
-echo "Creating systemd service for autodarts to start on system startup"
-echo "We will need sudo access to do that"
+echo "Creating systemd service for autodarts to start on system startup."
+echo "We will need sudo access to do that."
 cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodarts.service
 
@@ -72,3 +72,5 @@ echo "Starting autodarts."
 sudo systemctl stop autodarts
 sudo systemctl start autodarts
 fi
+
+echo "Done."
