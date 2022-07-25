@@ -9,6 +9,7 @@ done
 shift "$(($OPTIND -1))"
 
 REQ_VERSION=$1
+REQ_VERSION="${REQ_VERSION#v}"
 if [ "$REQ_VERSION" = "" ]; then
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases/latest | grep tag_name | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
     echo "Installing latest version v${VERSION}."
