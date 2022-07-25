@@ -9,46 +9,31 @@ done
 shift "$(($OPTIND -1))"
 
 REQ_VERSION=$1
-if [ "$REQ_VERSION" = "" ]
-then
+if [ "$REQ_VERSION" = "" ]; then
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases/latest | grep tag_name | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
     echo "Installing latest version v${VERSION}."
 else
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases | grep tag_name | grep ${REQ_VERSION} | grep -o '[0-9]*\.[0-9]*\.[0-9]*')
-    if [ "$VERSION" = "" ]
-    then
-        echo "Requested version v${REQ_VERSION} not found."
-        echo "Exiting."
-        exit 1
+    if [ "$VERSION" = "" ]; then
+        echo "Requested version v${REQ_VERSION} not found." && exit 1
     fi
     echo "Installing requested version v${VERSION}"
 fi
 
 PLATFORM=$(uname)
-if [ "$PLATFORM" = "Linux" ]
-then 
+if [ "$PLATFORM" = "Linux" ]; then 
     PLATFORM="linux"
 else
-    echo "Platform is not linux, and hence is not supported by this script."
-    echo "Exiting"
-    exit 1
+    echo "Platform is not linux, and hence is not supported by this script." && exit 1
 fi
 
 ARCH=$(uname -m)
-if [ "$ARCH" = "x86_64" ]
-then
-    ARCH="amd64"
-elif [ "$ARCH" = "aarch64" ]
-then
-    ARCH="arm64"
-elif [ "$ARCH" = "armv7l" ]
-then
-    ARCH="armv7l"
-else
-    echo "Kernel architecture ${ARCH} is not supported."
-    echo "Exiting"
-    exit 1
-fi
+case "${ARCH}" in
+    "x86_64"|"amd64") ARCH="amd64";;
+    "aarch64"|"arm64") ARCH="arm64";;
+    "armv7l") ARCH="armv7l";;
+    *) echo "Kernel architecture ${ARCH} is not supported." && exit 1;;
+esac
 
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
