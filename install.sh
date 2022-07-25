@@ -18,7 +18,7 @@ else
     if [ "$VERSION" = "" ]; then
         echo "Requested version v${REQ_VERSION} not found." && exit 1
     fi
-    echo "Installing requested version v${VERSION}"
+    echo "Installing requested version v${VERSION}."
 fi
 
 PLATFORM=$(uname)
