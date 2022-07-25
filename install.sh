@@ -8,6 +8,21 @@ while getopts n OPTION; do
 done
 shift "$(($OPTIND -1))"
 
+PLATFORM=$(uname)
+if [ "$PLATFORM" = "Linux" ]; then 
+    PLATFORM="linux"
+else
+    echo "Platform is not 'linux', and hence is not supported by this script." && exit 1
+fi
+
+ARCH=$(uname -m)
+case "${ARCH}" in
+    "x86_64"|"amd64") ARCH="amd64";;
+    "aarch64"|"arm64") ARCH="arm64";;
+    "armv7l") ARCH="armv7l";;
+    *) echo "Kernel architecture '${ARCH}' is not supported." && exit 1;;
+esac
+
 REQ_VERSION=$1
 REQ_VERSION="${REQ_VERSION#v}"
 if [ "$REQ_VERSION" = "" ]; then
@@ -20,21 +35,6 @@ else
     fi
     echo "Installing requested version v${VERSION}."
 fi
-
-PLATFORM=$(uname)
-if [ "$PLATFORM" = "Linux" ]; then 
-    PLATFORM="linux"
-else
-    echo "Platform is not linux, and hence is not supported by this script." && exit 1
-fi
-
-ARCH=$(uname -m)
-case "${ARCH}" in
-    "x86_64"|"amd64") ARCH="amd64";;
-    "aarch64"|"arm64") ARCH="arm64";;
-    "armv7l") ARCH="armv7l";;
-    *) echo "Kernel architecture ${ARCH} is not supported." && exit 1;;
-esac
 
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
