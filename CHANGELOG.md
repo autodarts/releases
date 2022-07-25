@@ -1,5 +1,20 @@
 # Changelog
 
+## 2022-07-25
+
+### Board Client `0.17.0`
+
+- We added device listing support for Windows, Linux, and MacOS. Now the available cameras will be correctly populated in the Board Manager for all OSes.
+- We removed the synchronization mechanism that aligned FPS in the main loop with the lowest FPS coming from the cams. Overall this should give more stable performance.
+- We fixed a bug where cameras were not correctly freed when one of the cams had failed, resulting in segmentation fault crashes.
+- We added two flags to the `autodarts` binary:
+  - If you run `autodarts --version`, it will return the Board Client version/
+  - If you run `autodarts --opencv-info`, it will return build information on the included OpenCV build.
+- We optimized the included OpenCV version to use a pre-compiled version of the `libjpeg-turbo` library with optimizers for different kernel architectures.
+- We reduced the footprint of the included OpenCV version to only bundle the necessary libraries, which overall reduced the size of the binaries.
+- We added support for Windows, Linux, and MacOS to retrieve host information from all OSes.
+- **Most importantly, we added support for Windows and provide an executable for Windows for the first time. Windows, however, is quite picky when it comes to connecting multiple cameras to the same USB port. It is adviced to connect every camera individually to different USB ports. I have tested on multiple machines, and this generally seems to work. It is not guaranteed to work, though. Windows support is still young, and things might break. So, be patient.**
+
 ## 2022-01-24
 
 ### Board Client `0.16.1`
