@@ -2,6 +2,8 @@
 
 You can install autodarts on a Linux system by using this single command.
 It will automatically download the latest version and install a systemd service to automatically start autodarts on startup.
+You might have to install `curl` on your machine beforehand.
+You can do so with `sudo apt install curl`.
 
 ```bash
 bash <(curl -sL get.autodarts.io)
@@ -37,3 +39,6 @@ If you want to see the log output, you can use the following command.
 ```bash
 journalctl -u autodarts -f
 ```
+
+For Windows and MacOS, which are not well tested, you can go to the releases pages and download the individual versions directly from there.
+Make sure that you download the correct version for your Mac, Intel vs Apple Silicon (`amd64` vs `arm64).
