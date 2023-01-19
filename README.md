@@ -41,4 +41,4 @@ journalctl -u autodarts -f
 ```
 
 For Windows and MacOS, which are not well tested, you can go to the releases pages and download the individual versions directly from there.
-Make sure that you download the correct version for your Mac, Intel vs Apple Silicon (`amd64` vs `arm64).
+Make sure that you download the correct version for your Mac, Intel vs Apple Silicon (`amd64` vs `arm64`).
