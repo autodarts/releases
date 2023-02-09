@@ -5,7 +5,9 @@ if [[ $1 == "--uninstall" ]]; then
 		echo "UVC hack does not seem to be installed. No original driver file found." && exit 1
 	fi
 	echo "Restoring original driver file"
+    sudo rmmmod uvcvideo
 	sudo mv /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
+    sudo insmod /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
 	echo "Done"
 	exit
 fi
