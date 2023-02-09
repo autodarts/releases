@@ -91,7 +91,4 @@ echo "Loading hacked driver in running kernel"
 sudo rmmod uvcvideo
 sudo insmod /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
 
-echo "Cleaning up temporary files"
-sudo rm -rf /tmp/uvc
-
 echo "Done"
