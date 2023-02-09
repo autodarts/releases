@@ -81,8 +81,10 @@ perl -0pi -e 's/ctrl->dwMaxPayloadTransferSize = bandwidth;\n\t}\n}/ctrl->dwMaxP
 echo "Compiling new uvc driver"
 sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
 
-echo "Creating backup of official driver file"
-sudo mv /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak
+if [ ! -f /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak ]; then
+    echo "Creating backup of official driver file"
+    sudo cp /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak
+fi
 
 echo "Copying hacked driver"
 sudo cp ./uvcvideo.ko /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
