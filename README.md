@@ -46,9 +46,6 @@ Make sure that you download the correct version for your Mac, Intel vs Apple Sil
 ## UVC Hack
 
 If your setup requires the UVC hack, you can now install it with the following command.
-The command is compatible with standard Linux devices (e.g., Ubuntu 20.04 LTS), Odroid devices, and the Jetson Nano.
-It does not work on the Raspberry Pi.
-However, you should not be needing the UVC hack on the Raspberry Pi.
 
 ```bash
 bash <(curl -sL get.autodarts.io/uvc)
