@@ -50,3 +50,9 @@ If your setup requires the UVC hack, you can now install it with the following c
 ```bash
 bash <(curl -sL get.autodarts.io/uvc)
 ```
+
+You can reset the system to the original driver file by passing the `--uninstall` flag as follows.
+
+```bash
+bash <(curl -sL get.autodarts.io/uvc) --uninstall
+```
