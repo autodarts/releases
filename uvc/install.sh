@@ -1,5 +1,10 @@
 #!/bin/bash
 
+PLATFORM=$(uname)
+if ! [ "$PLATFORM" = "Linux" ]; then 
+    echo "Platform is not 'linux', and hence is not supported by this script." && exit 1
+fi
+
 if [[ $1 == "--uninstall" ]]; then
     if [ ! -f /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak ]; then
         echo "UVC hack does not seem to be installed. No original driver file found." && exit 1
@@ -11,11 +16,6 @@ if [[ $1 == "--uninstall" ]]; then
     sudo insmod /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
     echo "Done"
     exit
-fi
-
-PLATFORM=$(uname)
-if ! [ "$PLATFORM" = "Linux" ]; then 
-    echo "Platform is not 'linux', and hence is not supported by this script." && exit 1
 fi
 
 echo "Checking if curl is installed"
