@@ -1,15 +1,16 @@
 #!/bin/bash
 
 if [[ $1 == "--uninstall" ]]; then
-	if [ ! -f /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak ]; then
-		echo "UVC hack does not seem to be installed. No original driver file found." && exit 1
-	fi
-	echo "Restoring original driver file"
+    if [ ! -f /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak ]; then
+        echo "UVC hack does not seem to be installed. No original driver file found." && exit 1
+    fi
+    echo "Restoring original uvc driver file"
+    sudo mv /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
+    echo "Reloading uvc driver"
     sudo rmmod uvcvideo
-	sudo mv /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
     sudo insmod /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
-	echo "Done"
-	exit
+    echo "Done"
+    exit
 fi
 
 PLATFORM=$(uname)
@@ -45,32 +46,32 @@ cd /tmp/uvc
 
 if $IS_ODROID; then
     curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/Kconfig
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/Makefile
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_ctrl.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_debugfs.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_driver.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_entity.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_isight.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_metadata.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_queue.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_status.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_v4l2.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_video.c
-	curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvcvideo.h
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/Makefile
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_ctrl.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_debugfs.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_driver.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_entity.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_isight.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_metadata.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_queue.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_status.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_v4l2.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_video.c
+    curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvcvideo.h
 elif $IS_TEGRA; then
     curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/Kconfig
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/Makefile
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_ctrl.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_debugfs.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_driver.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_entity.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_isight.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_metadata.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_queue.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_status.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_v4l2.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_video.c
-	curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvcvideo.h
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/Makefile
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_ctrl.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_debugfs.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_driver.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_entity.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_isight.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_metadata.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_queue.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_status.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_v4l2.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_video.c
+    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvcvideo.h
 else
     curl -O -J -L -s https://raw.githubusercontent.com/torvalds/linux/v${VERSION}/drivers/media/usb/uvc/Kconfig
     curl -O -J -L -s https://raw.githubusercontent.com/torvalds/linux/v${VERSION}/drivers/media/usb/uvc/Makefile
@@ -98,10 +99,10 @@ if [ ! -f /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak 
     sudo cp /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko.bak
 fi
 
-echo "Copying hacked driver"
+echo "Copying new uvc driver"
 sudo cp ./uvcvideo.ko /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
 
-echo "Loading hacked driver in running kernel"
+echo "Reloading uvc driver"
 sudo rmmod uvcvideo
 sudo insmod /lib/modules/$(uname -r)/kernel/drivers/media/usb/uvc/uvcvideo.ko
 
