@@ -11,6 +11,8 @@ echo "Checking if perl is installed"
 if ! dpkg-query -W -f='${Status}' perl | grep "ok installed" > /dev/null; then sudo apt install perl; fi
 echo "Checking if build-essential is installed"
 if ! dpkg-query -W -f='${Status}' build-essential | grep "ok installed" > /dev/null; then sudo apt install build-essential; fi
+echo "Checking if linux-headers are installed"
+if [ ! -d /lib/modules/$(uname -r)/build ]; then sudo apt install linux-headers; fi
 
 VERSION=$(echo $(uname -r) | grep -oP "\d+\.\d+")
 
