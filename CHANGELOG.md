@@ -1,5 +1,12 @@
 # Changelog
 
+## 2022-03-01
+
+### Board Client `0.18.0-beta2`
+
+- We added support for the checkerboard cam calibration. You can find it in the Distortion tab in the Board Manager.
+- Bug fixes.
+
 ## 2022-07-25
 
 ### Board Client `0.17.0`
