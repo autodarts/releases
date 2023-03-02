@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 == "--uninstall" ]]; then
+if [ $1 == "--uninstall" ]; then
     echo "Trying to remove autodarts"
     sudo systemctl stop autodarts
     sudo systemctl disable autodarts
