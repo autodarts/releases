@@ -2,11 +2,13 @@
 
 ## 2023-03-06
 
+### Board Client `0.18.0-beta6`
+
+- Fix bug where the MJPG stream would encode for every connected client.
+
 ### Board Client `0.18.0-beta5`
 
 - Ignore OBS Virtual Camera.
-
-## 2023-03-06
 
 ### Board Client `0.18.0-beta4`
 
