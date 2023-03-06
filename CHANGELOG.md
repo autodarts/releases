@@ -2,14 +2,22 @@
 
 ## 2023-03-06
 
+### Board Client `0.18.0-beta5`
+
+- Ignore OBS Virtual Camera.
+
+## 2023-03-06
+
 ### Board Client `0.18.0-beta4`
 
+- We fixed a bug where broadcasting messages could block.
 - Bug fixes.
 
 ## 2023-03-02
 
 ### Board Client `0.18.0-beta3`
 
+- We fixed a bug in Windows where the cameras did not start in MJPG mode. This boosts FPS on Windows to the same level as Linux and MacOS.
 - Bug fixes.
 
 ## 2023-03-01
