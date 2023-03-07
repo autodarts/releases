@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $1 == "--uninstall" ]; then
+if [[ $1 == "--uninstall" ]]; then
     echo "Trying to remove autodarts"
     sudo systemctl stop autodarts
     sudo systemctl disable autodarts
@@ -18,8 +18,10 @@ done
 shift "$(($OPTIND -1))"
 
 PLATFORM=$(uname)
-if [ "$PLATFORM" = "Linux" ]; then 
+if [[ "$PLATFORM" = "Linux" ]]; then 
     PLATFORM="linux"
+elif [[ "$PLATFORM" = "Darwin" ]]; then
+    PLATFORM="darwin"
 else
     echo "Platform is not 'linux', and hence is not supported by this script." && exit 1
 fi
@@ -32,14 +34,18 @@ case "${ARCH}" in
     *) echo "Kernel architecture '${ARCH}' is not supported." && exit 1;;
 esac
 
+if [[ "$PLATFORM" = "darwin" ]]; then
+    ARCH="${ARCH}.opencv4.7.0"
+fi
+
 REQ_VERSION=$1
 REQ_VERSION="${REQ_VERSION#v}"
-if [ "$REQ_VERSION" = "" ]; then
+if [[ "$REQ_VERSION" = "" ]]; then
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases/latest | grep tag_name | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
     echo "Installing latest version v${VERSION}."
 else
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases | grep tag_name | grep ${REQ_VERSION} | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\(-beta[0-9]\+\)\?')
-    if [ "$VERSION" = "" ]; then
+    if [[ "$VERSION" = "" ]]; then
         echo "Requested version v${REQ_VERSION} not found." && exit 1
     fi
     echo "Installing requested version v${VERSION}."
@@ -52,11 +58,11 @@ curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/aut
 echo "Making ~/.local/bin/autodarts executable."
 chmod +x ~/.local/bin/autodarts
 
-if [ ${AUTOSTART} = "true" ]; then
-# Creat systemd service
-echo "Creating systemd service for autodarts to start on system startup."
-echo "We will need sudo access to do that."
-cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+if [[ ${AUTOSTART} = "true" && "$PLATFORM" = "linux" ]]; then
+    # Creat systemd service
+    echo "Creating systemd service for autodarts to start on system startup."
+    echo "We will need sudo access to do that."
+    cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodarts.service
 
 [Unit]
@@ -75,12 +81,12 @@ RestartSec=5s
 WantedBy=multi-user.target
 EOF
 
-echo "Enabling systemd service."
-sudo systemctl enable autodarts
+    echo "Enabling systemd service."
+    sudo systemctl enable autodarts
 
-echo "Starting autodarts."
-sudo systemctl stop autodarts
-sudo systemctl start autodarts
+    echo "Starting autodarts."
+    sudo systemctl stop autodarts
+    sudo systemctl start autodarts
 fi
 
 echo "Done."
