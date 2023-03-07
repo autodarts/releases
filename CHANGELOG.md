@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-03-07
+
+### Board Client `0.18.0-beta7`
+
+- Fix MJPG bug on linux.
+
 ## 2023-03-06
 
 ### Board Client `0.18.0-beta6`
