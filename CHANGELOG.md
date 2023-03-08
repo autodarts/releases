@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-03-08
+
+### Board Client `0.18.0-beta8`
+
+- Bug fixes.
+
 ## 2023-03-07
 
 ### Board Client `0.18.0-beta7`

@@ -59,7 +59,7 @@ echo "Making ~/.local/bin/autodarts executable."
 chmod +x ~/.local/bin/autodarts
 
 if [[ ${AUTOSTART} = "true" && "$PLATFORM" = "linux" ]]; then
-    # Creat systemd service
+    # Create systemd service
     echo "Creating systemd service for autodarts to start on system startup."
     echo "We will need sudo access to do that."
     cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
