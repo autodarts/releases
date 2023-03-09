@@ -1,9 +1,27 @@
 # Changelog
 
+## 2023-03-09
+
+### Board Client `0.18.0-rc1`
+
+- We added new endpoints for MJPG streams, `/api/streams`
+  - `/api/streams/live` can be used to live stream the cams while the Board Client is detecting.
+  - You can use the `cam=<cam_id>` query parameter to select a specific cam.
+  - You can use the `update=<always|onChange|onDart>` query parameter to control how often the stream is updated.
+    - `always` updates after every main loop iteration.
+    - `onChange` updates whenever there is a change in the image.
+    - `onDart` updates after a dart has been detected and after the takeout.
+  - You can use the `warp=true` query parameter to get the frontal view after the board calibration has been applied.
+  - A good setting for streaming with OBS would be this `http://<board_ip>:3180/api/streams/live?cam=0&warp=true&update=onDart`.
+- We fixed a couple of race conditions when accessing detection state information.
+- Windows performance should now be on par with MacOS and Linux.
+- Bug fixes.
+
 ## 2023-03-08
 
 ### Board Client `0.18.0-beta8`
 
+- We re-wrote the API with a faster router implementation.
 - Bug fixes.
 
 ## 2023-03-07
