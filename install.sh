@@ -44,7 +44,7 @@ if [[ "$REQ_VERSION" = "" ]]; then
     VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases/latest | grep tag_name | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
     echo "Installing latest version v${VERSION}."
 else
-    VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases | grep tag_name | grep ${REQ_VERSION} | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\(-beta[0-9]\+\)\?')
+    VERSION=$(curl -sL https://api.github.com/repos/autodarts/releases/releases | grep tag_name | grep ${REQ_VERSION} | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\(-\(beta\|rc\)[0-9]\+\)\?')
     if [[ "$VERSION" = "" ]]; then
         echo "Requested version v${REQ_VERSION} not found." && exit 1
     fi
