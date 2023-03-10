@@ -1,5 +1,22 @@
 # Changelog
 
+## 2023-03-10
+
+### Board Client `0.18.0`
+
+- Windows and MacOS are now officially supported.
+- Windows performance was drastically improved by running the cameras directly in MJPG mode. Before there was a bug where this setting was not correctly set.
+- We added a new "Distortion" tab in the Board Manager that allows to create the `distortion.json` directly from within the Board Manager. The board client will then calculate the `distortion.json` and activate it. This can take a couple of minutes to compute, so be patient.
+- We added new endpoints for MJPG streams, `/api/streams`
+  - `/api/streams/live` can be used to live stream the cams while the Board Client is detecting.
+  - You can use the `cam=<cam_id>` query parameter to select a specific cam.
+  - You can use the `update=<always|onChange|onDart>` query parameter to control how often the stream is updated.
+    - `always` updates after every main loop iteration.
+    - `onChange` updates whenever there is a change in the image.
+    - `onDart` updates after a dart has been detected and after the takeout.
+  - You can use the `warp=true` query parameter to get the frontal view after the board calibration has been applied.
+  - A good setting for streaming with OBS would be this `http://<board_ip>:3180/api/streams/live?cam=0&warp=true&update=onDart`.
+
 ## 2023-03-09
 
 ### Board Client `0.18.0-rc1`
