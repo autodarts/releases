@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023-03-27
+
+### Board Client `0.18.1`
+
+- We fixed a memory leak in the `/api/img/live` andpoint that was called by the backend to create the live board.
+- We switched to the updated board connection logic.
+
 ## 2023-03-10
 
 ### Board Client `0.18.0`
