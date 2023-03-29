@@ -1,5 +1,13 @@
 # Changelog
 
+## 2023-03-29
+
+### Board Client `0.18.2`
+
+- We fixed a bug that could lead to bad performance on low-end devices.
+- We fixed a bug where the board always needed to be reset after retart.
+- We introduced a watermark on the live streams.
+
 ## 2023-03-27
 
 ### Board Client `0.18.1`
