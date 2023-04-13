@@ -1,5 +1,13 @@
 # Changelog
 
+## 2023-04-13
+
+### Board Client `0.19.0`
+
+- We optimized the detection algorithm. This is most likely only the first of a couple of updates to the detection algorithm. The detection algorithm has not been updated since the official start of the Autodarts Alpha, back in 2021.
+- In our tests, we could - for the first time - consisently reach accuracy values above 99% (playing averages around 50). An optimized setup is key here, of course. We think you can expect 0.5-2% of increase in your accuracy, depending on your setup.
+- You might experience longer detection times because the algorithm does more work than it did before. In all our tests this was negligible, though.
+
 ## 2023-03-29
 
 ### Board Client `0.18.2`
