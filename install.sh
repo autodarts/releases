@@ -72,6 +72,7 @@ After=network.target
 
 [Service]
 User=${USER}
+ExecStartPre=-/home/${USER}/.local/bin/configure
 ExecStart=/home/${USER}/.local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
