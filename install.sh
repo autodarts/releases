@@ -82,6 +82,9 @@ RestartSec=5s
 WantedBy=multi-user.target
 EOF
 
+    echo "Adding the current user to the group video"
+    sudo addgroup ${USER} video
+
     echo "Enabling systemd service."
     sudo systemctl enable autodarts
 
