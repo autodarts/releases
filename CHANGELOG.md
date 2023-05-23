@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023-05-23
+
+### Board Client `0.19.1`
+
+- We updated the default parameters for some hidden config parameters and added support for the parameters inside the `config.cfg` file.
+- We fixed some timeout bugs for people with slower internet connection.
+
 ## 2023-04-13
 
 ### Board Client `0.19.0`
