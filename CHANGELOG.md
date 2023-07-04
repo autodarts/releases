@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-07-04
+
+### Board Client `0.19.2`
+
+- We reverted the changes from `0.19.1` that lead to delayed detection transmissions to the servers.
+
 ## 2023-05-23
 
 ### Board Client `0.19.1`
