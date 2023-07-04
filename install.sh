@@ -35,7 +35,7 @@ case "${ARCH}" in
 esac
 
 if [[ "$PLATFORM" = "darwin" ]]; then
-    ARCH="${ARCH}.opencv4.7.0"
+    ARCH="${ARCH}.opencv4.8.0"
 fi
 
 REQ_VERSION=$1
