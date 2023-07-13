@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-07-13
+
+### Board Client `0.19.3`
+
+- We now run all server requests in separate threads to not block other requests while one request is taking longer than expected.
+
 ## 2023-07-04
 
 ### Board Client `0.19.2`
