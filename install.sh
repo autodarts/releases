@@ -72,7 +72,6 @@ After=network.target
 
 [Service]
 User=${USER}
-ExecStartPre=-/bin/sh /home/${USER}/.autodarts/cams.sh
 ExecStart=/home/${USER}/.local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
