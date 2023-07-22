@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023-07-22
+
+### Board Client `0.20.0`
+
+- Linux: We are pleased to announce that Autodarts now supports V4L2 camera controls natively. You can configure your camera settings directly from the Config tab in the Board Manager. The settings will be saved in a `cam_controls.json` file inside the config directory. Old `cams.sh` scripts will be backed up to `cams.sh.bak`, thereby ignoring the old `cams.sh` solution. The `cam_controls.json` only holds the settings that are different from the default values for the respective cameras. It is advised to only interact with the camera settings through the Board Manager.
+- Windows & MacOS: No meaningful changes.
+
 ## 2023-07-13
 
 ### Board Client `0.19.3`
