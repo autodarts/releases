@@ -1,5 +1,17 @@
 # Changelog
 
+# 2023-08-25
+
+### Board Client `0.21.0`
+
+- We have significantly enhanced the performance of the detection algorithm, achieving up to an 8x increase in speed.
+- Furthermore, we have optimized the main loop of the motion detection process, resulting in a remarkable 6x acceleration.
+  Improvements have also been made to the takeout detection algorithm, yielding a 2x speedup.
+- Introducing two new configuration parameters, hand_wait_frames and dart_wait_frames, now provides the ability to specify the number of frames to discard after a hand removal or a detected dart action. This level of control enhances the precision of the system's response.
+- For seamless execution on MacOS (both Intel and Apple Silicon), essential dynamic libraries have been incorporated, streamlining the installation process using the conventional bash command mentioned earlier.
+- A new feature allows the initiation of a benchmark through the -benchmark flag. This benchmark assesses the speed at which dart detection occurs on your specific machine.
+  These collective enhancements not only address issues such as double detections, premature takeout identifications, and dynamic linking conflicts, but also result in a superior performance compared to all previous versions of autodarts. Rigorous testing across diverse setups and machines underscores that this configuration stands as the optimal choice. In all respects, this represents the pinnacle version to date.
+
 ## 2023-07-22
 
 ### Board Client `0.20.1`
