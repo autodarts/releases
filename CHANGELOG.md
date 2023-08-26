@@ -1,6 +1,10 @@
 # Changelog
 
-# 2023-08-25
+# 2023-08-26
+
+### Board Client `0.21.1`
+
+- We reverted the logic that detects takeouts to how it was priort to `0.20.2-beta10`.
 
 ### Board Client `0.21.0`
 
