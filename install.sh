@@ -34,10 +34,6 @@ case "${ARCH}" in
     *) echo "Kernel architecture '${ARCH}' is not supported." && exit 1;;
 esac
 
-if [[ "$PLATFORM" = "darwin" ]]; then
-    ARCH="${ARCH}.opencv4.8.0"
-fi
-
 REQ_VERSION=$1
 REQ_VERSION="${REQ_VERSION#v}"
 if [[ "$REQ_VERSION" = "" ]]; then
