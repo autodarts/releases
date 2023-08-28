@@ -1,5 +1,11 @@
 # Changelog
 
+# 2023-08-28
+
+### Board Client `0.21.2`
+
+- We reverted the motion detection logic back to how it was in `0.20.1`.
+
 # 2023-08-26
 
 ### Board Client `0.21.1`
