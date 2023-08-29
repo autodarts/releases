@@ -1,5 +1,19 @@
 # Changelog
 
+# 2023-08-29
+
+### Board Client `0.21.2`
+
+- We optimized the motion detection speed.
+- We addded a new `min_hand_frames` config parameter. A takeout is only detected when a hand was recnognized in the view for at least `min_hand_frames` number of frames. This should address the incorrect takeout detections when the second dart hit the first dart, resulting in a takeout being detected.
+- We added back the `hand_wait_frames` and the `dart_wait_frames` config parameters that verrsion `0.20.1` and `0.20.2` reverted.
+- The default values for the parameters are:
+  - `min_hand_frames = 10`
+  - `hand_wait_frames = 10`
+  - `dart_wait_frames = 10`
+- The new parameters can currently only be set directly in the `config.cfg` file.
+- The takeout detection should again be more robust and faster than before.
+
 # 2023-08-28
 
 ### Board Client `0.21.2`
@@ -17,7 +31,7 @@
 - We have significantly enhanced the performance of the detection algorithm, achieving up to an 8x increase in speed.
 - Furthermore, we have optimized the main loop of the motion detection process, resulting in a remarkable 6x acceleration.
 - Improvements have also been made to the takeout detection algorithm, yielding a 2x speedup.
-- Introducing two new configuration parameters, hand_wait_frames and dart_wait_frames, now provides the ability to specify the number of frames to discard after a hand removal or a detected dart action. This level of control enhances the precision of the system's response.
+- Introducing two new configuration parameters, `hand_wait_frames` and `dart_wait_frames`, now provides the ability to specify the number of frames to discard after a hand removal or a detected dart action. This level of control enhances the precision of the system's response.
 - For seamless execution on MacOS (both Intel and Apple Silicon), essential dynamic libraries have been incorporated, streamlining the installation process using the conventional bash command mentioned earlier.
 - A new feature allows the initiation of a benchmark through the `-benchmark` flag. This benchmark assesses the speed at which dart detection occurs on your specific machine.
 
