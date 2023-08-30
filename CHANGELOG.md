@@ -1,8 +1,15 @@
 # Changelog
 
+# 2023-08-30
+
+### Board Client `0.21.4`
+
+- We fixed some bugs with the motion state propagation.
+- We added support for the new Board Manager.
+
 # 2023-08-29
 
-### Board Client `0.21.2`
+### Board Client `0.21.3`
 
 - We optimized the motion detection speed.
 - We addded a new `min_hand_frames` config parameter. A takeout is only detected when a hand was recnognized in the view for at least `min_hand_frames` number of frames. This should address the incorrect takeout detections when the second dart hit the first dart, resulting in a takeout being detected.
