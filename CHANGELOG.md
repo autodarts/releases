@@ -1,5 +1,11 @@
 # Changelog
 
+# 2023-08-31
+
+### Board Client `0.21.5`
+
+- We optimized how many messages are sent to the autodarts servers.
+
 # 2023-08-30
 
 ### Board Client `0.21.4`
