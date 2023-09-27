@@ -73,7 +73,7 @@ if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
     echo "We will need sudo access to do that."
 
     if [[ ${USER} = "root" ]]; then
-      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+      cat <<EOF | sudo tee /etc/systemd/system/autodartsupdater.service >/dev/null
 # autodartsupdater.service
 [Unit]
 Description=Autodarts automatic updater.
@@ -89,7 +89,7 @@ ExecStart=/root/.local/bin/updater.sh
 WantedBy=multi-user.target
 EOF
     else
-      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+      cat <<EOF | sudo tee /etc/systemd/system/autodartsupdater.service >/dev/null
 # autodartsupdater.service
 [Unit]
 Description=Autodarts automatic updater.
