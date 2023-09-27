@@ -71,7 +71,9 @@ if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
     # Create systemd service
     echo "Creating systemd service for autodarts auto updater to run on system startup."
     echo "We will need sudo access to do that."
-  cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+
+    if [[ ${USER} = "root" ]]; then
+      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodartsupdater.service
 [Unit]
 Description=Autodarts automatic updater.
@@ -81,11 +83,28 @@ After=network.target
 [Service]
 Type=simple
 User=${USER}
-ExecStart=/bin/bash ~/.local/bin/updater.sh
+ExecStart=/root/.local/bin/updater.sh
 
 [Install]
 WantedBy=multi-user.target
 EOF
+    else
+      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+# autodartsupdater.service
+[Unit]
+Description=Autodarts automatic updater.
+Wants=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=${USER}
+ExecStart=/home/${USER}/.local/bin/updater.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    fi
 
     echo "Enabling systemd service for automatic updates."
     sudo systemctl enable autodartsupdater
@@ -95,7 +114,9 @@ if [[ ${AUTOSTART} = "true" && "$PLATFORM" = "linux" ]]; then
     # Create systemd service
     echo "Creating systemd service for autodarts to start on system startup."
     echo "We will need sudo access to do that."
-    cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+
+    if [[ ${USER} = "root" ]]; then
+      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
 # autodarts.service
 
 [Unit]
@@ -105,7 +126,7 @@ After=network.target
 
 [Service]
 User=${USER}
-ExecStart=~/.local/bin/autodarts
+ExecStart=/root/.local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
 RestartSec=5s
@@ -113,6 +134,26 @@ RestartSec=5s
 [Install]
 WantedBy=multi-user.target
 EOF
+    else
+      cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+# autodarts.service
+
+[Unit]
+Description=Start/Stop Autodarts board service
+Wants=network.target
+After=network.target
+
+[Service]
+User=${USER}
+ExecStart=/home/${USER}/.local/bin/autodarts
+Restart=on-failure
+KillSignal=SIGINT
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    fi
 
     echo "Adding the current user to the group video"
     sudo addgroup ${USER} video
