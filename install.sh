@@ -5,7 +5,9 @@ if [[ $1 == "--uninstall" ]]; then
     sudo systemctl stop autodarts
     sudo systemctl disable autodarts
     sudo rm /etc/systemd/system/autodarts.service
+    sudo rm /etc/systemd/system/autodartsupdater.service
     rm ~/.local/bin/autodarts
+    rm ~/.local/bin/update.sh
     exit
 fi
 
