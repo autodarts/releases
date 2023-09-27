@@ -10,9 +10,11 @@ if [[ $1 == "--uninstall" ]]; then
 fi
 
 AUTOSTART="true"
+AUTOUPDATE="true"
 while getopts n OPTION; do
   case "${OPTION}" in
     n) AUTOSTART="false";;
+    u) AUTOUPDATE="false";;
   esac
 done
 shift "$(($OPTIND -1))"
@@ -53,6 +55,32 @@ echo "Downloading and extracting 'autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz
 curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
 echo "Making ~/.local/bin/autodarts executable."
 chmod +x ~/.local/bin/autodarts
+curl -sL https://raw.githubusercontent.com/autodarts/releases/main/updater.sh
+chmod +x ~/.local/bin/updater.sh
+
+if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
+    # Create systemd service
+    echo "Creating systemd service for autodarts auto updater to run on system startup."
+    echo "We will need sudo access to do that."
+  cat <<EOF | sudo tee /etc/systemd/system/autodarts.service >/dev/null
+# autodartsupdater.service
+[Unit]
+Description=Autodarts automatic updater.
+Wants=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=${USER}
+ExecStart=/bin/bash ~/.local/bin/updater.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    echo "Enabling systemd service for automatic updates."
+    sudo systemctl enable autodartsupdater
+fi
 
 if [[ ${AUTOSTART} = "true" && "$PLATFORM" = "linux" ]]; then
     # Create systemd service
@@ -68,7 +96,7 @@ After=network.target
 
 [Service]
 User=${USER}
-ExecStart=/home/${USER}/.local/bin/autodarts
+ExecStart=~/.local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
 RestartSec=5s
