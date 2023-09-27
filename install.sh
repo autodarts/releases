@@ -66,7 +66,7 @@ echo "Downloading and extracting 'autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz
 curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
 echo "Making ~/.local/bin/autodarts executable."
 chmod +x ~/.local/bin/autodarts
-curl -sL https://raw.githubusercontent.com/autodarts/releases/main/updater.sh >> ~/.local/bin/updater.sh
+curl -sL https://raw.githubusercontent.com/autodarts/releases/main/updater.sh > ~/.local/bin/updater.sh
 chmod +x ~/.local/bin/updater.sh
 
 if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
