@@ -11,12 +11,21 @@ fi
 
 AUTOSTART="true"
 AUTOUPDATE="true"
-while getopts n OPTION; do
+while getopts "nu" OPTION; do
   case "${OPTION}" in
-    n) AUTOSTART="false";;
-    u) AUTOUPDATE="false";;
+    n)
+      AUTOSTART="false"
+      ;;
+    u)
+      AUTOUPDATE="false"
+      ;;
+    *)
+      AUTOSTART="true"
+      AUTOUPDATE="true"
+      ;;
   esac
 done
+
 shift "$(($OPTIND -1))"
 
 PLATFORM=$(uname)
