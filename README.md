@@ -15,10 +15,10 @@ If you do not want the autostart systemd service to be installed, you can use th
 bash <(curl -sL get.autodarts.io) -n
 ```
 
-If you do not want the automatic updater systemd service to be installed, you can use the `-u` flag as follows.
+If you do not want the automatic updater systemd service to be installed, you can use the `-u` flag as follows. This service updates your autodarts instance to the latest stable release on every system start.
 
 ```bash
-bash <(curl -sL get.autodarts.io) -n
+bash <(curl -sL get.autodarts.io) -u
 ```
 
 If you want to install a specific version, say, `0.16.0`, then you can append the required version to the command as follows.
