@@ -23,7 +23,7 @@ bash <(curl -sL get.autodarts.io) -u
 
 If you want to install a specific version, say, `0.16.0`, then you can append the required version to the command as follows.
 This can be helpful if you want to downgrade to an earlier version.
-This also works with the `-n` and `-u` flag from before.
+This also works with the `-n` and `-u` flag from before, but make sure these flags come before the required version.
 
 ```bash
 bash <(curl -sL get.autodarts.io) 0.16.0
