@@ -1,5 +1,12 @@
 # Changelog
 
+# 2023-10-25
+
+### Board Client `0.21.6`
+
+- We added support for the automatic calibration.
+- Bug fixes.
+
 # 2023-08-31
 
 ### Board Client `0.21.5`
