@@ -1,5 +1,37 @@
 # Changelog
 
+# 2023-11-14
+
+### Board Client `0.22.0`
+
+- We drastically improved the accuracy of the detection algorihtm.
+  - In our internal test with over 20 users, we reached an overall accuracy of **99.3%**, the median accuracy among all participants is **99.5**.
+  - The group consisted of a wide variety of different users, ranging from low averages to very high averages.
+  - All testers confirmed a much better game play and feeling because of the increased accuracy.
+- We introduced a new look and feel for the Motion and the Dart tab in the Board Manager.
+  - Motion tab:
+    - The Motion tab now uses a new virtual dart board visualization that mimics the look of the Autodarts virtual board.
+    - Differences are drawn in real time on the virtual board.
+    - The upper image shows the difference in the current image compared to the latest stable image.
+    - The lower image shows what Autodarts remembers as the darts that need to be taken out for the takeout to be registered.
+  - Dart tab:
+    - The Dart tab now uses a new virtual dart board visualization that mimics the look of the Autodarts virtual board.
+    - Each row in the image corresponds to the respective dart in the current round.
+    - Autodarts now uses a single cam fallback mechanism. The single cam detections are highlighted in the image in yellow.
+      - Note that the single cam detection is not always used, and that the detected segment is not always the same as the ones the single cam detection calculates.
+      - The final result of the detection is a combination of multiple things, including but not limited to, the intersections of the detected lines, the single cam detections, special heuristics.
+      - When trying to understand a (now hopefully rare) miscount, use the Monitor tab (to see the lines) and the Dart tab (to see the single cam detections).
+- We changed the format and the location of the config files of `autodarts`.
+  - The old `config.ini` is migrated to the new `config.toml` file format.
+  - The old `calibration.json` is also part of `config.toml`.
+  - The old `distortion.json` is also part of `config.toml`.
+  - The old `cam_controls.json` is also part of `config.toml`.
+  - All of the old files will be migrated to the new `config.toml` format on launch, and the old files will be backed up.
+  - There is a new location for the `config.toml` which differs on each operating system. The new paths are the established defaults for config files on each operating system.
+    - Windows: The location of the `config.toml` is `%APPDATA%\autodarts\config.toml`
+    - Linux: The location of the `config.toml` is `~/.config/autodarts/config.toml`
+    - macOS: The location of the `config.toml` is `~/Library/Application Support/autodarts/config.toml`
+
 # 2023-10-25
 
 ### Board Client `0.21.6`
