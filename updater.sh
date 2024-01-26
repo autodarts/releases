@@ -8,6 +8,6 @@ echo "Current version: ${CURRENT}, latest version: ${LATEST}"
 if [[ "$CURRENT" = "$LATEST" ]]; then
     echo "Current install is up-to-date, v${CURRENT}."
 else
-	echo "Updating Autodarts from v${CURRENT} to v${LATEST}."
+    echo "Updating Autodarts from v${CURRENT} to v${LATEST}."
     bash <(curl -sL get.autodarts.io)
 fi
