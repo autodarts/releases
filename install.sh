@@ -63,11 +63,11 @@ fi
 # Download autodarts binary and unpack to ~/.local/bin
 mkdir -p ~/.local/bin
 echo "Downloading and extracting 'autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz' into '~/.local/bin'."
-curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C ~/.local/bin
-echo "Making ~/.local/bin/autodarts executable."
-chmod +x ~/.local/bin/autodarts
-curl -sL https://raw.githubusercontent.com/autodarts/releases/main/updater.sh > ~/.local/bin/updater.sh
-chmod +x ~/.local/bin/updater.sh
+curl -sL https://github.com/autodarts/releases/releases/download/v${VERSION}/autodarts${VERSION}.${PLATFORM}-${ARCH}.tar.gz | tar -xz -C /usr/local/bin
+echo "Making /usr/local/bin/autodarts executable."
+chmod +x /usr/local/bin/autodarts
+curl -sL https://raw.githubusercontent.com/autodarts/releases/main/updater.sh > /usr/local/bin/updater.sh
+chmod +x /usr/local/bin/updater.sh
 
 if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
     # Create systemd service
@@ -85,7 +85,7 @@ After=network.target
 [Service]
 Type=simple
 User=${USER}
-ExecStart=/root/.local/bin/updater.sh
+ExecStart=/usr/local/bin/updater.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -101,7 +101,7 @@ After=network.target
 [Service]
 Type=simple
 User=${USER}
-ExecStart=/home/${USER}/.local/bin/updater.sh
+ExecStart=/usr/local/bin/updater.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -128,7 +128,7 @@ After=network.target
 
 [Service]
 User=${USER}
-ExecStart=/root/.local/bin/autodarts
+ExecStart=/usr/local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
 RestartSec=5s
@@ -147,7 +147,7 @@ After=network.target
 
 [Service]
 User=${USER}
-ExecStart=/home/${USER}/.local/bin/autodarts
+ExecStart=/usr/local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT
 RestartSec=5s
@@ -158,7 +158,7 @@ EOF
     fi
 
     echo "Adding the current user to the group video"
-    sudo addgroup ${USER} video
+    sudo usermod -aG ${USER} video
 
     echo "Enabling systemd service."
     sudo systemctl enable autodarts
