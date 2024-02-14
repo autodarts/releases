@@ -1,5 +1,16 @@
 # Changelog
 
+# 2023-02-14
+
+### Board Client `0.23.0`
+
+This release focuses on the takeout detection and optimizing the number of parameters necessary to run Autodarts.
+
+- We introduced a background mask that ignores any changes that happen outside of the board area. This might lead to darts that hit outside of the board area, e.g., on the surround, to not be detected any more (but they don't count anyway 😉). Miscounts because of people entering the room and passing by in the background of any camera image should now be a thing of the past.
+- We re-implemented the takeout detection logic to be more robust. Takeout detections should now be more consistent. We also changed how the state logic works. As soon as a hand was detected in the image, the board client will no longer detect darts, and expect a takeout to follow. You can still click reset to get it back.
+- The Board Manager Config page has been drastically overworked. Most of the parameters are no longer necessary because they are calculated based on the Calibration of the board. All parameters are now relative to the size of the board in the image instead of relative to the chosen resolution.
+- We fixed a couple of bugs. Most notably the memory leak that was reported in Discord.
+
 # 2023-11-14
 
 ### Board Client `0.22.0`
