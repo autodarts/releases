@@ -1,5 +1,11 @@
 # Changelog
 
+# 2023-02-16
+
+### Board Client `0.23.1`
+
+- We fixed a bug where the default config was not correctly created.
+
 # 2023-02-14
 
 ### Board Client `0.23.0`
