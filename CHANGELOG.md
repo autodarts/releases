@@ -1,5 +1,14 @@
 # Changelog
 
+# 2023-02-20
+
+### Board Client `0.23.2`
+
+- We added a routine that cleans up the incorrectly created config directory.
+- We changed the hand detection to account for screen shake.
+- We changed some default parameters to allow for better dart and takeout detection.
+- When changing camera settings in the Config tab, an auto-calibration will now be automatically performed.
+
 # 2023-02-16
 
 ### Board Client `0.23.1`
