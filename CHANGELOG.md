@@ -1,5 +1,11 @@
 # Changelog
 
+# 2023-03-11
+
+### Board Client `0.23.3`
+
+- We updated the takeout detection to be more robust in situations where the board can move slightly.
+
 # 2023-02-20
 
 ### Board Client `0.23.2`
