@@ -33,8 +33,6 @@ shift "$(($OPTIND -1))"
 PLATFORM=$(uname)
 if [[ "$PLATFORM" = "Linux" ]]; then 
     PLATFORM="linux"
-elif [[ "$PLATFORM" = "Darwin" ]]; then
-    PLATFORM="darwin"
 else
     echo "Platform is not 'linux', and hence is not supported by this script." && exit 1
 fi
