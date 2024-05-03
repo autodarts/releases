@@ -1,21 +1,31 @@
 # Autodarts Detection Changelog
 
-## 2023-03-11 - 0.23.3
+## 2024-05-03 - v0.24.0
+
+- We added support for automatic distortion calibration. Running the auto calibration will automatically calculate the distortion parameters.
+- We fixed a startup bug on Windows where not all cameras would start when connected to one USB port.
+- macOS and Windows versions are now code-signed an notarized with the Autodarts GmbH account.
+- We dialed back on the hand and takeout detection from v0.23.3. Now the takeout detection works in between v0.22.0 and v0.23.3.
+- A couple of default parameters have been adjusted.
+- This versions adds support for the new Autodarts Desktop that will be released soon.
+- Bug fixes.
+
+## 2024-03-11 - 0.23.3
 
 - We updated the takeout detection to be more robust in situations where the board can move slightly.
 
-## 2023-02-20 - 0.23.2
+## 2024-02-20 - 0.23.2
 
 - We added a routine that cleans up the incorrectly created config directory.
 - We changed the hand detection to account for screen shake.
 - We changed some default parameters to allow for better dart and takeout detection.
 - When changing camera settings in the Config tab, an auto-calibration will now be automatically performed.
 
-## 2023-02-16 - 0.23.1
+## 2024-02-16 - 0.23.1
 
 - We fixed a bug where the default config was not correctly created.
 
-## 2023-02-14 - 0.23.0
+## 2024-02-14 - 0.23.0
 
 This release focuses on the takeout detection and optimizing the number of parameters necessary to run Autodarts.
 
