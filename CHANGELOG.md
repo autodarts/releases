@@ -1,5 +1,9 @@
 # Autodarts Detection Changelog
 
+## 2024-05-07 - v0.24.1
+
+- We added support to disable the automatic distortion calculation.
+
 ## 2024-05-03 - v0.24.0
 
 - We added support for automatic distortion calibration. Running the auto calibration will automatically calculate the distortion parameters.
