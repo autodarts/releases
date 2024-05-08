@@ -1,5 +1,10 @@
 # Autodarts Detection Changelog
 
+## 2024-05-07 - v0.24.2
+
+- After a dart has been detected, the entire background is now checked for stability before the dart is detected. This addresses an error some users encountered.
+- We fixed a bug where a hand could sporadically be detected before the dart was detected, leading to the board flashing in yellow quickly before a dart detection.
+
 ## 2024-05-07 - v0.24.1
 
 - We added support to disable the automatic distortion calculation.
