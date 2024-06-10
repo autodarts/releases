@@ -1,5 +1,9 @@
 # Autodarts Detection Changelog
 
+## 2024-05-07 - v0.24.4
+
+- We updated the client certificate to match the server certificate.
+
 ## 2024-05-07 - v0.24.2
 
 - After a dart has been detected, the entire background is now checked for stability before the dart is detected. This addresses an error some users encountered.
