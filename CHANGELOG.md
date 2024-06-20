@@ -1,8 +1,18 @@
 # Autodarts Detection Changelog
 
-## 2024-05-07 - v0.24.4
+## 2024-06-20 - v0.25.0
 
-- We updated the client certificate to match the server certificate.
+- Security update: We updated the board connection logic to be more secure. This update is mandatory and will be enforced
+  on the server side. If you are using an older version of the board client, you will not be able to connect to the
+  server anymore. Please update to the latest version. There will be a grace period for `v0.22.x` and `v0.23.x`, but not for `v0.24.x`. `v0.24.x` will be deprecated and disabled with immediate effect.
+- Bug fixes:
+  - We fixed a bug on macOS (Intel) where cameras weren't correctly listed for selection.
+  - We fixed a bug that lead to an endless restart loop in the Autodarts Desktop.
+  - We fixed a bug where macOS versions only listed a maximum of 8 devices. Now, the maximum is 32.
+
+## 2024-06-10 - v0.24.4
+
+- Update GRPC certificate
 
 ## 2024-05-07 - v0.24.2
 
