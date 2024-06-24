@@ -1,5 +1,10 @@
 # Autodarts Detection Changelog
 
+## 2024-06-24 - v0.25.1
+
+- We fixed a bug where the board client would not correctly connect to the server.
+- We added better error logging.
+
 ## 2024-06-20 - v0.25.0
 
 - Security update: We updated the board connection logic to be more secure. This update is mandatory and will be enforced
