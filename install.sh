@@ -77,8 +77,8 @@ if [[ ${AUTOUPDATE} = "true" && "$PLATFORM" = "linux" ]]; then
 # autodartsupdater.service
 [Unit]
 Description=Autodarts automatic updater.
-Wants=network.target
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 Type=simple
@@ -93,8 +93,8 @@ EOF
 # autodartsupdater.service
 [Unit]
 Description=Autodarts automatic updater.
-Wants=network.target
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 Type=simple
@@ -120,8 +120,8 @@ if [[ ${AUTOSTART} = "true" && "$PLATFORM" = "linux" ]]; then
 
 [Unit]
 Description=Start/Stop Autodarts board service
-Wants=network.target
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 User=${USER}
@@ -139,8 +139,8 @@ EOF
 
 [Unit]
 Description=Start/Stop Autodarts board service
-Wants=network.target
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 User=${USER}
