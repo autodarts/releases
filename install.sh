@@ -82,7 +82,7 @@ After=network.target network-online.target
 
 [Service]
 Type=simple
-User=${USER}
+User=root
 ExecStart=/root/.local/bin/updater.sh
 
 [Install]
@@ -124,7 +124,7 @@ Wants=network-online.target
 After=network.target network-online.target
 
 [Service]
-User=${USER}
+User=root
 ExecStart=/root/.local/bin/autodarts
 Restart=on-failure
 KillSignal=SIGINT

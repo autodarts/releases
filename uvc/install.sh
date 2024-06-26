@@ -35,9 +35,6 @@ if [ -x "$(command -v odroid-tweaks)" ]; then
     VERSION=$(uname -r)
 fi
 
-IS_TEGRA="false"
-if [ -x "$(command -v jetson_clocks)" ]; then IS_TEGRA="true"; fi
-
 echo "Downloading files for kernel version $VERSION"
 
 sudo rm -rf /tmp/uvc
@@ -58,20 +55,6 @@ if $IS_ODROID; then
     curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_v4l2.c
     curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvc_video.c
     curl -O -J -L -s https://raw.githubusercontent.com/hardkernel/linux/${VERSION}/drivers/media/usb/uvc/uvcvideo.h
-elif $IS_TEGRA; then
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/Kconfig
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/Makefile
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_ctrl.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_debugfs.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_driver.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_entity.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_isight.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_metadata.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_queue.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_status.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_v4l2.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvc_video.c
-    curl -O -J -L -s https://raw.githubusercontent.com/autodarts/releases/main/uvc/${VERSION}-tegra/uvcvideo.h
 else
     curl -O -J -L -s https://raw.githubusercontent.com/torvalds/linux/v${VERSION}/drivers/media/usb/uvc/Kconfig
     curl -O -J -L -s https://raw.githubusercontent.com/torvalds/linux/v${VERSION}/drivers/media/usb/uvc/Makefile
