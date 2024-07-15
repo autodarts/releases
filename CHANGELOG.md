@@ -1,5 +1,9 @@
 # Autodarts Detection Changelog
 
+## 2024-07-15 - v0.25.2
+
+- We added auto-rotation to the automatic calibration. Cameras that are upside down will now automatically be flipped to the correct orientation.
+
 ## 2024-06-24 - v0.25.1
 
 - We fixed a bug where the board client would not correctly connect to the server.
